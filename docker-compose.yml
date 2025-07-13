@@ -4,7 +4,6 @@ services:
       context: .
       dockerfile: ./Dockerfile
     container_name: 3xui_app
-    # hostname: yourhostname <- optional
     volumes:
       - $PWD/db/:/etc/x-ui/
       - $PWD/cert/:/root/cert/
@@ -12,5 +11,6 @@ services:
       XRAY_VMESS_AEAD_FORCED: "false"
       XUI_ENABLE_FAIL2BAN: "true"
     tty: true
-    network_mode: host
+    ports:
+      - "127.0.0.1:2053:2053"
     restart: unless-stopped
